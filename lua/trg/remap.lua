@@ -42,6 +42,8 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<C-q>", ":q!<CR>", opts) --quitkeymap
 keymap("n", "<C-x>", ":lua vim.lsp.buf.formatting_sync()<CR>", opts) --format
+keymap("n", "<M-CR>", ":lua vim.lsp.buf.code_action()<CR>", opts) --format
+
 --toggle nvim tree
 keymap("n", "<C-s>", ":w!<CR>", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
@@ -54,6 +56,8 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<leader>c", ":bdelete<CR>", opts)
+keymap("n", "<leader>r", ":FlutterRun<CR>", opts)
+
 -- Move text up and down
 --toggle telescope
 keymap("n", "<C-f>", ":Telescope<CR>", opts)

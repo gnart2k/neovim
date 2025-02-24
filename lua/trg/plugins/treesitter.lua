@@ -8,5 +8,11 @@ return {
 				enable = true,
 			},
 		})
+		vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+			pattern = "*.arb",
+			callback = function()
+				vim.bo.filetype = "json"
+			end,
+		})
 	end,
 }

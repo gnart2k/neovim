@@ -78,7 +78,7 @@ return {
 		})
 
 		-- configure typescript server with plugin
-		lspconfig["tsserver"].setup({
+		lspconfig["ts_ls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
@@ -116,12 +116,12 @@ return {
 			end,
 		})
 
-		-- configure prisma orm server
-		lspconfig["prismals"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
+		-- -- configure prisma orm server
+		-- lspconfig["prismals"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- })
+		--
 		-- configure graphql language server
 		lspconfig["graphql"].setup({
 			capabilities = capabilities,
@@ -145,7 +145,7 @@ return {
 		-- configure lua server (with special settings)
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
-			on_attach = on_attach,
+			-- on_attach = on_attach,
 			settings = { -- custom settings for lua
 				Lua = {
 					-- make the language server recognize "vim" global
@@ -163,11 +163,27 @@ return {
 			},
 		})
 
+		lspconfig["csharp_ls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			cmd = { "csharp-ls" }, -- Make sure csharp-ls is installed and in your $PATH
+			filetypes = { "cs" },
+			root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
+		})
+
+		-- vim.api.nvim_create_autocmd("BufWritePre", {
+		-- 	pattern = "*.cs",
+		-- 	callback = function()
+		-- 		vim.cmd([[!csharpier %]])
+		-- 		vim.cmd([[e!]]) -- reload the file after formatting
+		-- 	end,
+		-- })
 		lspconfig["jdtls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			cmd = { "jdtls" },
 		})
+
 		lspconfig["omnisharp"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
@@ -175,7 +191,7 @@ return {
 			filetypes = { "cs" },
 			root_dir = lspconfig.util.root_pattern("*.sln"),
 		})
-		lspconfig["prismals"].setup({
+		lspconfig["dartls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
